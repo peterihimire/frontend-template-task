@@ -71,6 +71,9 @@ const Header = ({ isOpen, clicked }) => {
               }
             </a>
           </Link> */}
+          <Link href='/'>
+            <a className={``}>Template App</a>
+          </Link>
         </div>
 
         <Nav
@@ -82,21 +85,14 @@ const Header = ({ isOpen, clicked }) => {
 
         <div className={styles.hamburgerBtn}>
           <button
-            type="button"
-            aria-label="navigation button"
+            type='button'
+            aria-label='navigation button'
             onClick={clicked}
             className={`hamburger hamburger--spin ${isOpen ? "is-active" : ""}`}
           >
-            <span className="hamburger-box">
+            <span className='hamburger-box'>
               <span
-                className={`${
-                  bgChange ||
-                  router.pathname === "/contact-us" ||
-                  router.pathname === "/about-us" ||
-                  router.pathname === "/faq"
-                    ? "hamburger-inner hamburger-inner-dark"
-                    : "hamburger-inner hamburger-inner-light"
-                }`}
+                className={`${"hamburger-inner hamburger-inner-dark"}`}
               ></span>
             </span>
           </button>

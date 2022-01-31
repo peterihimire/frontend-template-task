@@ -2,9 +2,9 @@ import React from "react";
 import styles from "./styles.module.scss";
 import Input from "../../ui/customInput";
 import Select from "../../ui/customSelect";
-import SearchIcon from "../../../public/images/search.svg";
+import SearchIcon from "../../../public/images/search-icon.svg";
 
-// import Image from "next/image";
+
 
 const SearchSort = () => {
   return (

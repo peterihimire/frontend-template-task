@@ -11,10 +11,27 @@
   }
 
   .cardBody {
+    padding: 20px;
     h3 {
-      font-weight: bold;
-      font-size: 16px;
-      line-height: 20px;
+      font-weight: 500;
+      font-size: 24px;
+      line-height: 30px;
+      color: #333447;
+    }
+    p {
+      font-size: 14px;
+      line-height: 17px;
+      color: #3f3e3e;
+    }
+  }
+  .cardFooter {
+    padding: 20px;
+    background: #f9f9f9;
+
+    a {
+      color: var(--green);
+      font-size: 14px;
+      line-height: 18px;
     }
   }
 }

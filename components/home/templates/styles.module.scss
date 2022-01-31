@@ -1,21 +1,60 @@
 .searchSort {
   width: 100%;
   // background-color: #f5f5f5;
-  padding: 100px 0;
+  // padding: 100px 0;
 
   .wrapper {
-   
+    .searchInfo {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #fff4ea;
+      border-radius: 2px;
+      padding: 20px 0;
+      margin: 40px 0;
 
+      span {
+        margin-left: 10px;
+      }
+    }
+
+    .categoryInfo {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 10px;
+
+      h3 {
+        font-size: 18px;
+        line-height: 23px;
+        color: #3f3e3e;
+      }
+
+      span {
+        font-size: 14px;
+        line-height: 18px;
+        color: #989898;
+      }
+    }
     .grid {
       width: 100%;
-      margin-top: 57px;
+      margin-top: 20px;
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 103px;
+      gap: 60px;
 
-      @media screen and (max-width: 1200px) {
-        grid-template-columns: repeat(auto-fit, minmax(200px, 377px));
-        justify-content: center;
+      // @media screen and (max-width: 1200px) {
+      //   grid-template-columns: repeat(auto-fit, minmax(200px, 377px));
+      //   justify-content: center;
+      // }
+
+      @media screen and (max-width: 900px) {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 60px;
+      }
+      @media screen and (max-width: 700px) {
+        grid-template-columns: repeat(1, 1fr);
+        gap: 60px;
       }
 
       .card {
