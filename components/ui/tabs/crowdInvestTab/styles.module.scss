@@ -1,0 +1,96 @@
+.tabs {
+  width: var(--full);
+  background: transparent;
+  height: auto;
+
+  .tabsHeader {
+    width: var(--full);
+    height: 50px;
+
+    .tabsHeaderList {
+      display: flex;
+      height: var(--full);
+      border-bottom: 1px solid var(--card-border);
+      overflow-x: auto;
+      overflow-y: hidden;
+      white-space: nowrap;
+
+      &.horizontalPadding {
+        padding: 0px 80px;
+
+        &::after {
+          content: "";
+          padding-right: 16px;
+        }
+
+        @media (max-width: 600px) {
+          padding: 0px 16px;
+        }
+      }
+
+      > li {
+        height: 90%;
+        position: relative;
+        background: var(--white);
+        color: #65676f;
+        border-radius: 50px;
+        border: solid #fff 2px;
+        font-weight: bold;
+        margin: 0 10px;
+
+        &.active {
+          background: var(--dashBlue);
+          border-radius: 50px;
+          font-weight: bold;
+          border: solid var(--dashBlue) 2px;
+
+          &::after {
+            // content: "";
+            position: absolute;
+            bottom: -1px;
+            left: 0;
+            width: var(--full);
+            height: 2px;
+          }
+
+          > button {
+            color: var(--white) !important;
+            font-family: Proxima-Medium !important;
+
+            > .dot {
+              background: var(--orange);
+              display: block;
+              width: 6px;
+              height: 6px;
+              border-radius: 50%;
+              margin-right: 4px;
+            }
+          }
+        }
+
+        > button {
+          width: fit-content;
+          margin: 0 auto;
+          height: 100%;
+          padding: 16px 12px;
+          background: transparent;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          font-size: 14px;
+          font-family: Noto-Medium;
+          position: relative;
+          font-family: Proxima-Medium !important;
+
+          > .dot {
+            display: none;
+          }
+        }
+      }
+
+      @media (max-width: 600px) {
+        justify-content: center;
+      }
+    }
+  }
+}
