@@ -48,38 +48,8 @@
 
       > a {
         width: 102px;
-
-        &.lightLogo {
-          svg {
-            > g {
-              > path {
-                fill: var(--black);
-
-                @media (max-width: 1264px) {
-                  fill: var(--white) !important;
-                }
-              }
-            }
-          }
-        }
-
-        &.darkLogo {
-          svg {
-            > g {
-              > path {
-                fill: var(--white);
-
-                @media (max-width: 1264px) {
-                  fill: var(--black) !important;
-                }
-              }
-            }
-          }
-        }
-
-        svg {
-          width: 100%;
-        }
+        color: var(--dark);
+        font-weight: bolder;
       }
     }
 

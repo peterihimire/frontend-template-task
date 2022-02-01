@@ -1,9 +1,17 @@
-import React from "react";
+import React, { useEffect } from "react";
 import styles from "./styles.module.scss";
 import Card from "../../ui/card";
 import Pagination from "../../ui/pagination";
 
+import { useSelector, useDispatch } from "react-redux";
+import * as actions from "../../../store/actions";
+
 const Templates = () => {
+  const dispatch = useDispatch();
+  console.log(actions);
+  useEffect(() => {
+    dispatch(actions.templates());
+  }, []);
   return (
     <section className={styles.searchSort}>
       <div className={`${styles.wrapper} wrapper`}>
@@ -38,7 +46,7 @@ const Templates = () => {
             info='Engage your alumni network better with this alumni registration form template. Embed this in your website ...'
             link='/'
           />
-              <Card
+          <Card
             title='Alumni Membership Form Template'
             info='Engage your alumni network better with this alumni registration form template. Embed this in your website ...'
             link='/'
@@ -68,7 +76,7 @@ const Templates = () => {
             previousClassName='paginate-previous'
             nextClassName='paginate-next'
             breakLabel='...'
-            pageRangeDisplayed={3}
+            pageRangeDisplayed={2}
             marginPagesDisplayed={1}
           />
         </div>

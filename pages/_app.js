@@ -2,14 +2,11 @@ import Head from "next/head";
 import Script from "next/script";
 import Router from "next/router";
 import NProgress from "nprogress";
-// import "swiper/css/pagination";
 import "../styles/globals.scss";
-// import "swiper/css";
-// import "swiper/css/bundle";
 import "nprogress/nprogress.css";
-// import { wrapper } from "../store";
-// import { PersistGate } from "redux-persist/integration/react";
-// import { useStore } from "react-redux";
+import { wrapper } from "../store";
+import { PersistGate } from "redux-persist/integration/react";
+import { useStore } from "react-redux";
 
 Router.events.on("routeChangeStart", () => NProgress.start());
 Router.events.on("routeChangeComplete", () => NProgress.done());
@@ -19,7 +16,7 @@ NProgress.configure({ showSpinner: false });
 function MyApp({ Component, pageProps }) {
   const getLayout = Component.getLayout || ((page) => page);
 
-  // const store = useStore((state) => state);
+  const store = useStore((state) => state);
 
   return getLayout(
     <>
@@ -31,12 +28,12 @@ function MyApp({ Component, pageProps }) {
 
       <Script src="/fontawesome.js" />
 
-      {/* <PersistGate persistor={store.__persistor}> */}
+      <PersistGate persistor={store.__persistor}>
       <Component {...pageProps} />
-      {/* </PersistGate> */}
+      </PersistGate>
     </>
   );
 }
 
-// export default wrapper.withRedux(MyApp);
-export default MyApp;
+export default wrapper.withRedux(MyApp);
+// export default MyApp;
