@@ -3,7 +3,7 @@ import styles from "./styles.module.scss";
 import Link from "next/link";
 // import ProgressBar from "@ramonak/react-progress-bar";
 
-const Card = ({ title, info, link }) => {
+const Card = ({ title, info, link ,template}) => {
   return (
     <div className={styles.card}>
       <div className={styles.cardBody}>

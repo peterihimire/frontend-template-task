@@ -1,6 +1,7 @@
 import React from "react";
 import styles from "./styles.module.scss";
 import Card from "../../ui/card";
+import Pagination from "../../ui/pagination";
 
 const Templates = () => {
   return (
@@ -36,6 +37,39 @@ const Templates = () => {
             title='Alumni Membership Form Template'
             info='Engage your alumni network better with this alumni registration form template. Embed this in your website ...'
             link='/'
+          />
+              <Card
+            title='Alumni Membership Form Template'
+            info='Engage your alumni network better with this alumni registration form template. Embed this in your website ...'
+            link='/'
+          />
+          <Card
+            title='Alumni Membership Form Template'
+            info='Engage your alumni network better with this alumni registration form template. Embed this in your website ...'
+            link='/'
+          />
+          <Card
+            title='Alumni Membership Form Template'
+            info='Engage your alumni network better with this alumni registration form template. Embed this in your website ...'
+            link='/'
+          />
+          <Card
+            title='Alumni Membership Form Template'
+            info='Engage your alumni network better with this alumni registration form template. Embed this in your website ...'
+            link='/'
+          />
+        </div>
+        <div className={styles.gridPaginate}>
+          <Pagination
+            pageCount={17}
+            containerClassName='pagination'
+            activeClassName='paginate-active'
+            disabledClassName='paginate-disabled'
+            previousClassName='paginate-previous'
+            nextClassName='paginate-next'
+            breakLabel='...'
+            pageRangeDisplayed={3}
+            marginPagesDisplayed={1}
           />
         </div>
       </div>

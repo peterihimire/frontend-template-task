@@ -718,6 +718,11 @@ input[type="radio"] {
   // align-items: center;
   justify-content: center;
   flex-wrap: wrap;
+  position: relative;
+
+  .break-me {
+    color: yellow;
+  }
 
   @media screen and (max-width: 700px) {
     font-size: 18px;
@@ -729,12 +734,32 @@ input[type="radio"] {
     width: fit-content;
     cursor: pointer;
 
+  
+
+
     &:last-of-type {
-      margin-right: 0px;
+      margin-right: 0;
+      position: absolute;
+      right: 60px;
+
+      @media screen and (max-width: 700px) {
+        right: 0px;
+      }
+    }
+
+    &:first-of-type {
+      position: absolute;
+      left: 60px;
+      margin-right: 50px !important;
+
+      @media screen and (max-width: 700px) {
+        left: 0px;
+      }
     }
 
     @media screen and (max-width: 700px) {
       margin-bottom: 10px;
+      margin-right: 10px;
 
       &:last-of-type {
         margin-bottom: 0px;
@@ -753,7 +778,11 @@ input[type="radio"] {
       cursor: not-allowed;
 
       a {
-        color: rgb(136, 135, 135) !important;
+        // color: rgb(136, 135, 135) !important;
+        background: #ffffff;
+        border: 1px solid #3f3f3f;
+        border-radius: 3px;
+        padding: 6px 12px;
       }
     }
 
