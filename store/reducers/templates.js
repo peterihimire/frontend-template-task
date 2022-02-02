@@ -2,7 +2,7 @@ import * as actionTypes from "../actions/actionTypes";
 
 const localSto = () => {
   if (typeof window !== "undefined") {
-    JSON.parse(localStorage.getItem("templates")) || null;
+    JSON.parse(localStorage.getItem("templates")) || [];
   }
 };
 

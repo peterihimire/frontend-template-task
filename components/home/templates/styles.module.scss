@@ -4,6 +4,15 @@
   padding: 0 0 50px 0;
 
   .wrapper {
+    
+    .noTemplate {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      margin: 50px 0 0 0;
+    }
+
     .searchInfo {
       display: flex;
       align-items: center;

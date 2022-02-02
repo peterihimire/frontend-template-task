@@ -1,4 +1,4 @@
-import React, { useEffect , useState} from "react";
+import React, { useEffect, useState } from "react";
 import styles from "./styles.module.scss";
 import Card from "../../ui/card";
 import Pagination from "../../ui/pagination";
@@ -8,19 +8,19 @@ import * as actions from "../../../store/actions";
 
 const Templates = () => {
   const [pageNum, setPageNum] = useState(0);
-  const templatesPerPage = 12;
+  const templatesPerPage = 15;
   const pagesVisited = pageNum * templatesPerPage;
 
   const dispatch = useDispatch();
   console.log(actions);
 
-  const { allTemplates } = useSelector((state) => {
+  const { allTemplates, loading, error } = useSelector((state) => {
     console.log(state);
     // console.log(error, loading);
     return {
       allTemplates: state.templates.allTemplates,
-      // loading: state.career.loading,
-      // error: state.career.error,
+      loading: state.templates.loading,
+      error: state.templates.error,
     };
   });
 
@@ -54,22 +54,34 @@ const Templates = () => {
         <div className={styles.categoryInfo}>
           <h3>All Templates</h3> <span>{allTemplates.length} templates</span>
         </div>
-        <div className={styles.grid}>
-          {allTemplates
-            .slice(pagesVisited, pagesVisited + templatesPerPage)
-            .map((templates) => {
-              console.log(templates);
-              console.log(templates.category);
-              return (
-                <Card
-                  title={templates.name}
-                  info={templates.description}
-                  link={templates.link}
-                  template={templates.category}
-                />
-              );
-            })}
-        </div>
+        {loading && (
+          <div className={styles.noTemplate}>
+            <h3>Loading...</h3>
+          </div>
+        )}
+        {allTemplates.length === 0 ? (
+          <div className={styles.noTemplate}>
+            <h3>NO TEMPLATES AVAILABLE</h3>
+          </div>
+        ) : (
+          <div className={styles.grid}>
+            {allTemplates
+              .slice(pagesVisited, pagesVisited + templatesPerPage)
+              .map((templates) => {
+                console.log(templates);
+                console.log(templates.category);
+                return (
+                  <Card
+                    title={templates.name}
+                    info={templates.description}
+                    link={templates.link}
+                    template={templates.category}
+                  />
+                );
+              })}
+          </div>
+        )}
+
         <div className={styles.gridPaginate}>
           <Pagination
             pageCount={pageCount}
