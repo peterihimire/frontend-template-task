@@ -4,8 +4,6 @@ import Input from "../../ui/customInput";
 import Select from "../../ui/customSelect";
 import SearchIcon from "../../../public/images/search-icon.svg";
 
-
-
 const SearchSort = () => {
   return (
     <section className={styles.searchSort}>
@@ -25,34 +23,31 @@ const SearchSort = () => {
           <p>Sort By:</p>
           <span>
             <Select
-              name='gender'
+              name='category'
               labelText='Category'
               // required
-              id='template'
+              id='category'
               defaultValue=''
               wrapClass={styles.selectWidth}
             >
-              <option value='' disabled>
-                All
-              </option>
-              <option value='nig'>Education</option>
-              <option value='gh'>Agriculture</option>
+              <option value='all'>All</option>
+              <option value='education'>Education</option>
+              <option value='ecommerce'>E-Commerce</option>
+              <option value='health'>Health</option>
             </Select>
           </span>
           <span>
             <Select
-              name='gender'
+              name='order'
               labelText='Order'
               // required
               id='order'
               defaultValue=''
               wrapClass={styles.selectWidth}
             >
-              <option value='' disabled>
-                Default
-              </option>
-              <option value='nig'>Education</option>
-              <option value='gh'>Agriculture</option>
+              <option value='default'>Default</option>
+              <option value='ascending'>Ascending</option>
+              <option value='descending'>Descending</option>
             </Select>
           </span>
           <span>
@@ -60,15 +55,13 @@ const SearchSort = () => {
               name='date'
               labelText='Date'
               // required
-              id='template'
+              id='date'
               defaultValue=''
               wrapClass={styles.selectWidth}
             >
-              <option value='' disabled>
-                Default
-              </option>
-              <option value='nig'>Education</option>
-              <option value='gh'>Agriculture</option>
+              <option value='default'>Default</option>
+              <option value='ascending'>Ascending</option>
+              <option value='descending'>Descending</option>
             </Select>
           </span>
         </div>

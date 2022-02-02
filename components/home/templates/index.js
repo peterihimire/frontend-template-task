@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect , useState} from "react";
 import styles from "./styles.module.scss";
 import Card from "../../ui/card";
 import Pagination from "../../ui/pagination";
@@ -7,8 +7,37 @@ import { useSelector, useDispatch } from "react-redux";
 import * as actions from "../../../store/actions";
 
 const Templates = () => {
+  const [pageNum, setPageNum] = useState(0);
+  const templatesPerPage = 12;
+  const pagesVisited = pageNum * templatesPerPage;
+
   const dispatch = useDispatch();
   console.log(actions);
+
+  const { allTemplates } = useSelector((state) => {
+    console.log(state);
+    // console.log(error, loading);
+    return {
+      allTemplates: state.templates.allTemplates,
+      // loading: state.career.loading,
+      // error: state.career.error,
+    };
+  });
+
+  // Handles page count numbers
+  const pageCount = Math.ceil(allTemplates.length / templatesPerPage);
+
+  //Handle page click
+  const changePageHandler = ({ selected }) => {
+    return setPageNum(selected);
+  };
+
+  useEffect(() => {
+    localStorage.setItem("templates", JSON.stringify(allTemplates));
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [allTemplates]);
+
   useEffect(() => {
     dispatch(actions.templates());
   }, []);
@@ -23,53 +52,28 @@ const Templates = () => {
           </span>
         </div>
         <div className={styles.categoryInfo}>
-          <h3>All Templates</h3> <span>2000 templates</span>
+          <h3>All Templates</h3> <span>{allTemplates.length} templates</span>
         </div>
         <div className={styles.grid}>
-          <Card
-            title='Alumni Membership Form Template'
-            info='Engage your alumni network better with this alumni registration form template. Embed this in your website ...'
-            link='/'
-          />
-          <Card
-            title='Alumni Membership Form Template'
-            info='Engage your alumni network better with this alumni registration form template. Embed this in your website ...'
-            link='/'
-          />
-          <Card
-            title='Alumni Membership Form Template'
-            info='Engage your alumni network better with this alumni registration form template. Embed this in your website ...'
-            link='/'
-          />
-          <Card
-            title='Alumni Membership Form Template'
-            info='Engage your alumni network better with this alumni registration form template. Embed this in your website ...'
-            link='/'
-          />
-          <Card
-            title='Alumni Membership Form Template'
-            info='Engage your alumni network better with this alumni registration form template. Embed this in your website ...'
-            link='/'
-          />
-          <Card
-            title='Alumni Membership Form Template'
-            info='Engage your alumni network better with this alumni registration form template. Embed this in your website ...'
-            link='/'
-          />
-          <Card
-            title='Alumni Membership Form Template'
-            info='Engage your alumni network better with this alumni registration form template. Embed this in your website ...'
-            link='/'
-          />
-          <Card
-            title='Alumni Membership Form Template'
-            info='Engage your alumni network better with this alumni registration form template. Embed this in your website ...'
-            link='/'
-          />
+          {allTemplates
+            .slice(pagesVisited, pagesVisited + templatesPerPage)
+            .map((templates) => {
+              console.log(templates);
+              console.log(templates.category);
+              return (
+                <Card
+                  title={templates.name}
+                  info={templates.description}
+                  link={templates.link}
+                  template={templates.category}
+                />
+              );
+            })}
         </div>
         <div className={styles.gridPaginate}>
           <Pagination
-            pageCount={17}
+            pageCount={pageCount}
+            onPageChange={changePageHandler}
             containerClassName='pagination'
             activeClassName='paginate-active'
             disabledClassName='paginate-disabled'

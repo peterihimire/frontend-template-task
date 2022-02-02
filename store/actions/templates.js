@@ -32,13 +32,13 @@ export const templates = () => {
     try {
       const response = await axios.get(`task_templates`);
       console.log(response);
-      // console.log(response.data.message.allCareers);
-      // dispatch(getAllTemplates(response.data.message.allCareers));
+      console.log(response.data.slice(1, 200));
+      dispatch(getAllTemplates(response.data.slice(0, 200)));
     } catch (err) {
       console.log(err);
-      // dispatch(templateError(err.data));
+      dispatch(templateError(err));
     } finally {
-      // dispatch(templateStart(false));
+      dispatch(templateStart(false));
     }
   };
 };
