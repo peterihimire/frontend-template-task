@@ -55,25 +55,28 @@ const Templates = () => {
 
   return (
     <section className={styles.searchSort}>
-      {allTemplates && (
-        <div className={`${styles.wrapper} wrapper`}>
-          <div className={styles.searchInfo}>
-            <img src='images/info-icon.svg' alt='' />{" "}
-            <span>
-              Tada! Get started with a free template. Can't find what you are
-              looking for? Search from the 1000+ available templates
-            </span>
-          </div>
-          <div className={styles.categoryInfo}>
-            <h3>All Templates</h3> <span>{allTemplates.length} templates</span>
-          </div>
+      <div className={`${styles.wrapper} wrapper`}>
+        <div className={styles.searchInfo}>
+          <img src='images/info-icon.svg' alt='' />
+          <span>
+            Tada! Get started with a free template. Can't find what you are
+            looking for? Search from the 1000+ available templates
+          </span>
+        </div>
 
-          {loading && (
-            <div className={styles.noTemplate}>
-              <h3>Loading...</h3>
-            </div>
-          )}
-          {allTemplates.length === 0 ? (
+        <div className={styles.categoryInfo}>
+          <h3>All Templates</h3>
+
+          <span>{allTemplates ? allTemplates.length : 0} templates</span>
+        </div>
+
+        {loading && (
+          <div className={styles.noTemplate}>
+            <h3>Loading...</h3>
+          </div>
+        )}
+        {allTemplates ? (
+          allTemplates.length === 0 ? (
             <div className={styles.noTemplate}>
               <h3>NO TEMPLATES AVAILABLE</h3>
             </div>
@@ -94,24 +97,26 @@ const Templates = () => {
                   );
                 })}
             </div>
-          )}
+          )
+        ) : (
+          loading
+        )}
 
-          <div className={styles.gridPaginate}>
-            <Pagination
-              pageCount={pageCount}
-              onPageChange={changePageHandler}
-              containerClassName='pagination'
-              activeClassName='paginate-active'
-              disabledClassName='paginate-disabled'
-              previousClassName='paginate-previous'
-              nextClassName='paginate-next'
-              breakLabel='...'
-              pageRangeDisplayed={2}
-              marginPagesDisplayed={1}
-            />
-          </div>
+        <div className={styles.gridPaginate}>
+          <Pagination
+            pageCount={pageCount}
+            onPageChange={changePageHandler}
+            containerClassName='pagination'
+            activeClassName='paginate-active'
+            disabledClassName='paginate-disabled'
+            previousClassName='paginate-previous'
+            nextClassName='paginate-next'
+            breakLabel='...'
+            pageRangeDisplayed={2}
+            marginPagesDisplayed={1}
+          />
         </div>
-      )}
+      </div>
     </section>
   );
 };
