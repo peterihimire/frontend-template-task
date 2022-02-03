@@ -5,6 +5,7 @@ import Pagination from "../../ui/pagination";
 
 import { useSelector, useDispatch } from "react-redux";
 import * as actions from "../../../store/actions";
+import { set } from "nprogress";
 
 const Templates = () => {
   const [pageNum, setPageNum] = useState(0);
@@ -23,9 +24,19 @@ const Templates = () => {
       error: state.templates.error,
     };
   });
+  console.log(allTemplates);
+
+  const setAllTemplateLength = () => {
+    if (!allTemplates) {
+      return loading;
+    } else {
+      return allTemplates;
+    }
+  };
+  console.log(setAllTemplateLength());
 
   // Handles page count numbers
-  const pageCount = Math.ceil(allTemplates.length / templatesPerPage);
+  const pageCount = Math.ceil(setAllTemplateLength().length / templatesPerPage);
 
   //Handle page click
   const changePageHandler = ({ selected }) => {
@@ -41,62 +52,66 @@ const Templates = () => {
   useEffect(() => {
     dispatch(actions.templates());
   }, []);
+
   return (
     <section className={styles.searchSort}>
-      <div className={`${styles.wrapper} wrapper`}>
-        <div className={styles.searchInfo}>
-          <img src='images/info-icon.svg' alt='' />{" "}
-          <span>
-            Tada! Get started with a free template. Can't find what you are
-            looking for? Search from the 1000+ available templates
-          </span>
-        </div>
-        <div className={styles.categoryInfo}>
-          <h3>All Templates</h3> <span>{allTemplates.length} templates</span>
-        </div>
-        {loading && (
-          <div className={styles.noTemplate}>
-            <h3>Loading...</h3>
+      {allTemplates && (
+        <div className={`${styles.wrapper} wrapper`}>
+          <div className={styles.searchInfo}>
+            <img src='images/info-icon.svg' alt='' />{" "}
+            <span>
+              Tada! Get started with a free template. Can't find what you are
+              looking for? Search from the 1000+ available templates
+            </span>
           </div>
-        )}
-        {allTemplates.length === 0 ? (
-          <div className={styles.noTemplate}>
-            <h3>NO TEMPLATES AVAILABLE</h3>
+          <div className={styles.categoryInfo}>
+            <h3>All Templates</h3> <span>{allTemplates.length} templates</span>
           </div>
-        ) : (
-          <div className={styles.grid}>
-            {allTemplates
-              .slice(pagesVisited, pagesVisited + templatesPerPage)
-              .map((templates) => {
-                console.log(templates);
-                console.log(templates.category);
-                return (
-                  <Card
-                    title={templates.name}
-                    info={templates.description}
-                    link={templates.link}
-                    template={templates.category}
-                  />
-                );
-              })}
-          </div>
-        )}
 
-        <div className={styles.gridPaginate}>
-          <Pagination
-            pageCount={pageCount}
-            onPageChange={changePageHandler}
-            containerClassName='pagination'
-            activeClassName='paginate-active'
-            disabledClassName='paginate-disabled'
-            previousClassName='paginate-previous'
-            nextClassName='paginate-next'
-            breakLabel='...'
-            pageRangeDisplayed={2}
-            marginPagesDisplayed={1}
-          />
+          {loading && (
+            <div className={styles.noTemplate}>
+              <h3>Loading...</h3>
+            </div>
+          )}
+          {allTemplates.length === 0 ? (
+            <div className={styles.noTemplate}>
+              <h3>NO TEMPLATES AVAILABLE</h3>
+            </div>
+          ) : (
+            <div className={styles.grid}>
+              {allTemplates
+                .slice(pagesVisited, pagesVisited + templatesPerPage)
+                .map((templates) => {
+                  console.log(templates);
+                  console.log(templates.category);
+                  return (
+                    <Card
+                      title={templates.name}
+                      info={templates.description}
+                      link={templates.link}
+                      template={templates.category}
+                    />
+                  );
+                })}
+            </div>
+          )}
+
+          <div className={styles.gridPaginate}>
+            <Pagination
+              pageCount={pageCount}
+              onPageChange={changePageHandler}
+              containerClassName='pagination'
+              activeClassName='paginate-active'
+              disabledClassName='paginate-disabled'
+              previousClassName='paginate-previous'
+              nextClassName='paginate-next'
+              breakLabel='...'
+              pageRangeDisplayed={2}
+              marginPagesDisplayed={1}
+            />
+          </div>
         </div>
-      </div>
+      )}
     </section>
   );
 };

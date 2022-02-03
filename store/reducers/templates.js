@@ -1,15 +1,14 @@
 import * as actionTypes from "../actions/actionTypes";
 
-const localSto = () => {
+const localStorageTemplate = () => {
   if (typeof window !== "undefined") {
     JSON.parse(localStorage.getItem("templates")) || [];
   }
 };
 
 const initialState = {
-  // allTemplates: JSON.parse(localStorage.getItem("templates")) || null,
-  allTemplates: localSto,
-
+  // allTemplates: JSON.parse(localStorage.getItem("templates")) || [],
+  allTemplates: localStorageTemplate,
   loading: false,
   error: null,
 };
