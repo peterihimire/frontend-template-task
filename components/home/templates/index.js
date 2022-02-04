@@ -66,7 +66,6 @@ const Templates = () => {
 
         <div className={styles.categoryInfo}>
           <h3>All Templates</h3>
-
           <span>{allTemplates ? allTemplates.length : 0} templates</span>
         </div>
 
