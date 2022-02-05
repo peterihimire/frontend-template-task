@@ -5,7 +5,7 @@ import Pagination from "../../ui/pagination";
 
 import { useSelector, useDispatch } from "react-redux";
 import * as actions from "../../../store/actions";
-import { set } from "nprogress";
+
 
 const Templates = () => {
   const [pageNum, setPageNum] = useState(0);
@@ -13,10 +13,10 @@ const Templates = () => {
   const pagesVisited = pageNum * templatesPerPage;
 
   const dispatch = useDispatch();
-  console.log(actions);
+  // console.log(actions);
 
   const { allTemplates, loading, error } = useSelector((state) => {
-    console.log(state);
+    // console.log(state);
     // console.log(error, loading);
     return {
       allTemplates: state.templates.allTemplates,
@@ -24,7 +24,7 @@ const Templates = () => {
       error: state.templates.error,
     };
   });
-  console.log(allTemplates);
+  // console.log(allTemplates);
 
   const setAllTemplateLength = () => {
     if (!allTemplates) {
@@ -84,8 +84,8 @@ const Templates = () => {
               {allTemplates
                 .slice(pagesVisited, pagesVisited + templatesPerPage)
                 .map((templates) => {
-                  console.log(templates);
-                  console.log(templates.category);
+                  // console.log(templates);
+                  // console.log(templates.category);
                   return (
                     <Card
                       title={templates.name}

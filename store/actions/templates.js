@@ -23,6 +23,41 @@ export const getAllTemplates = (payload) => {
   };
 };
 
+export const filterByValue = (payload) => {
+  return {
+    type: actionTypes.FILTER_BY_VALUE,
+    payload,
+  };
+};
+
+export const sortByAlphabet = (payload) => {
+  return {
+    type: actionTypes.SORT_BY_ALPHABET,
+    payload,
+  };
+};
+
+export const sortByHealth = (payload) => {
+  return {
+    type: actionTypes.SORT_BY_HEALTH,
+    payload,
+  };
+};
+
+export const sortByEducation = (payload) => {
+  return {
+    type: actionTypes.SORT_BY_EDUCATION,
+    payload,
+  };
+};
+
+export const sortByEcommerce = (payload) => {
+  return {
+    type: actionTypes.SORT_BY_ECOMMERCE,
+    payload,
+  };
+};
+
 // Get all templates
 
 export const templates = () => {
