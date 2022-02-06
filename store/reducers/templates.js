@@ -16,7 +16,7 @@ const initialState = {
 };
 
 const reducer = (state = initialState, action) => {
-  console.log(state);
+  // console.log(state);
   switch (action.type) {
     case actionTypes.GET_ALL_TEMPLATES:
       return {
@@ -39,13 +39,14 @@ const reducer = (state = initialState, action) => {
 
       let newState = { ...state };
       let value = action.payload.value;
-      console.log(value);
+      // console.log(value);
       let filteredValues = state.allTemplates.filter((templates) => {
-        console.log(templates.name);
+        // console.log(templates.name);
         return templates.name.toLowerCase().includes(value);
       });
       // console.log(filteredValues);
       let appliedTemplates = state.appliedTemplates;
+      console.log(appliedTemplates);
 
       if (value) {
         appliedTemplates = addFilterIfNotExists(
@@ -86,8 +87,6 @@ function addFilterIfNotExists(filter, appliedFilters) {
 }
 
 function removeFilter(filter, appliedFilters) {
-  console.log(filter);
-  console.log(appliedFilters);
   let index = appliedFilters.indexOf(filter);
   console.log(index);
   appliedFilters.splice(index, 1);

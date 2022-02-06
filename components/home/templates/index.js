@@ -6,6 +6,7 @@ import Pagination from "../../ui/pagination";
 import { useSelector, useDispatch } from "react-redux";
 import * as actions from "../../../store/actions";
 
+
 const Templates = () => {
   const [pageNum, setPageNum] = useState(0);
   const templatesPerPage = 15;
@@ -14,19 +15,16 @@ const Templates = () => {
   const dispatch = useDispatch();
   // console.log(actions);
 
-  const { allTemplates, loading, error, filteredTemplates } = useSelector(
-    (state) => {
-      // console.log(state);
-      // console.log(error, loading);
-      return {
-        allTemplates: state.templates.allTemplates,
-        loading: state.templates.loading,
-        error: state.templates.error,
-        filteredTemplates: state.templates.filteredTemplates,
-      };
-    },
-  );
-  // console.log(allTemplates);
+  const { allTemplates, loading, error } = useSelector((state) => {
+    // console.log(state);
+    // console.log(error, loading);
+    return {
+      allTemplates: state.templates.allTemplates,
+      loading: state.templates.loading,
+      error: state.templates.error,
+    };
+  });
+  console.log(allTemplates);
 
   const setAllTemplateLength = () => {
     if (!allTemplates) {
