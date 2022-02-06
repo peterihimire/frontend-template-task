@@ -12,10 +12,10 @@ const SearchSort = () => {
 
   const filterByInput = (e) => {
     e.preventDefault();
-    const value = e.target.value;
+    const input = e.target.value;
     // let text = e.target.value;
-    console.log(value);
-    dispatch(actions.filterByValue({value}));
+    console.log(input);
+    dispatch(actions.filterByValue({ value: input }));
   };
 
   const sortByAlphabethHandler = (e) => {

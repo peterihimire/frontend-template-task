@@ -6,7 +6,6 @@ import Pagination from "../../ui/pagination";
 import { useSelector, useDispatch } from "react-redux";
 import * as actions from "../../../store/actions";
 
-
 const Templates = () => {
   const [pageNum, setPageNum] = useState(0);
   const templatesPerPage = 15;
@@ -19,35 +18,37 @@ const Templates = () => {
     // console.log(state);
     // console.log(error, loading);
     return {
-      allTemplates: state.templates.allTemplates,
+      allTemplates: state.templates.filteredTemplates,
       loading: state.templates.loading,
       error: state.templates.error,
     };
   });
   console.log(allTemplates);
 
-  const setAllTemplateLength = () => {
-    if (!allTemplates) {
-      return loading;
-    } else {
-      return allTemplates;
-    }
-  };
-  console.log(setAllTemplateLength());
+  // const setAllTemplateLength = () => {
+  //   if (!allTemplates) {
+  //     return loading;
+  //   } else {
+  //     return allTemplates;
+  //   }
+  // };
+  // console.log(setAllTemplateLength());
 
   // Handles page count numbers
-  const pageCount = Math.ceil(setAllTemplateLength().length / templatesPerPage);
+  const pageCount = Math.ceil(
+    allTemplates && allTemplates.length / templatesPerPage,
+  );
 
   //Handle page click
   const changePageHandler = ({ selected }) => {
     return setPageNum(selected);
   };
 
-  useEffect(() => {
-    localStorage.setItem("templates", JSON.stringify(allTemplates));
+  // useEffect(() => {
+  //   localStorage.setItem("templates", JSON.stringify(allTemplates));
 
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [allTemplates]);
+  //   // eslint-disable-next-line react-hooks/exhaustive-deps
+  // }, [allTemplates]);
 
   useEffect(() => {
     dispatch(actions.templates());
@@ -101,20 +102,24 @@ const Templates = () => {
           loading
         )}
 
-        <div className={styles.gridPaginate}>
-          <Pagination
-            pageCount={pageCount}
-            onPageChange={changePageHandler}
-            containerClassName='pagination'
-            activeClassName='paginate-active'
-            disabledClassName='paginate-disabled'
-            previousClassName='paginate-previous'
-            nextClassName='paginate-next'
-            breakLabel='...'
-            pageRangeDisplayed={2}
-            marginPagesDisplayed={1}
-          />
-        </div>
+        {allTemplates ? (
+          <div className={styles.gridPaginate}>
+            <Pagination
+              pageCount={pageCount}
+              onPageChange={changePageHandler}
+              containerClassName='pagination'
+              activeClassName='paginate-active'
+              disabledClassName='paginate-disabled'
+              previousClassName='paginate-previous'
+              nextClassName='paginate-next'
+              breakLabel='...'
+              pageRangeDisplayed={2}
+              marginPagesDisplayed={1}
+            />
+          </div>
+        ) : (
+          loading
+        )}
       </div>
     </section>
   );

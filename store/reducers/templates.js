@@ -1,15 +1,16 @@
 import * as actionTypes from "../actions/actionTypes";
 
-const localStorageTemplate = () => {
-  if (typeof window !== "undefined") {
-    JSON.parse(localStorage.getItem("templates")) || [];
-  }
-};
+// const localStorageTemplate = () => {
+//   if (typeof window !== "undefined") {
+//     JSON.parse(localStorage.getItem("templates")) || [];
+//   }
+// };
 
 const initialState = {
   // allTemplates: JSON.parse(localStorage.getItem("templates")) || [],
-  allTemplates: localStorageTemplate,
-  appliedTemplates: [],
+  // allTemplates: localStorageTemplate,
+  allTemplates: [],
+  appliedFilters: [],
   filteredTemplates: [],
   loading: false,
   error: null,
@@ -17,6 +18,7 @@ const initialState = {
 
 const reducer = (state = initialState, action) => {
   // console.log(state);
+  console.log(action);
   switch (action.type) {
     case actionTypes.GET_ALL_TEMPLATES:
       return {
@@ -35,39 +37,41 @@ const reducer = (state = initialState, action) => {
       };
 
     case actionTypes.FILTER_BY_VALUE:
-      // let newState = Object.assign({}, state);
-
-      let newState = { ...state };
+      let copiedState = Object.assign({}, state);
+      console.log(state);
+      console.log(copiedState);
+      // let newState = { ...state };
       let value = action.payload.value;
-      // console.log(value);
+      console.log(value);
+      console.log(action);
+
       let filteredValues = state.allTemplates.filter((templates) => {
         // console.log(templates.name);
         return templates.name.toLowerCase().includes(value);
       });
-      // console.log(filteredValues);
-      let appliedTemplates = state.appliedTemplates;
-      console.log(appliedTemplates);
+      console.log(state.appliedFilters);
+      // let appliedFilters = state.appliedFilters;
+
+      let appliedFilters = [action.type];
+      console.log(appliedFilters);
 
       if (value) {
-        appliedTemplates = addFilterIfNotExists(
+        appliedFilters = addFilterIfNotExists(
           actionTypes.FILTER_BY_VALUE,
-          appliedTemplates,
+          appliedFilters,
         );
-        newState.filteredTemplates = filteredValues;
+        copiedState.filteredTemplates = filteredValues;
       } else {
-        appliedTemplates = removeFilter(
+        appliedFilters = removeFilter(
           actionTypes.FILTER_BY_VALUE,
-          appliedTemplates,
+          appliedFilters,
         );
-        if (appliedTemplates.length === 0) {
-          newState.filteredTemplates = newState.allTemplates;
+        if (appliedFilters.length === 0) {
+          copiedState.filteredTemplates = copiedState.allTemplates;
         }
       }
 
-      return {
-        newState,
-        // allTemplates: filteredValues,
-      };
+      return copiedState;
 
     default:
       return state;
