@@ -1,3 +1,4 @@
+import { templates } from "../actions";
 import * as actionTypes from "../actions/actionTypes";
 
 // const localStorageTemplate = () => {
@@ -56,7 +57,7 @@ const reducer = (state = initialState, action) => {
       let copiedState = Object.assign({}, state);
       console.log(state);
       console.log(copiedState);
-      // let newState = { ...state };
+
       let value = action.payload.value;
       console.log(value);
       console.log(action);
@@ -66,7 +67,6 @@ const reducer = (state = initialState, action) => {
         return templates.name.toLowerCase().includes(value);
       });
       console.log(state.appliedFilters);
-     
 
       let appliedFilters = [action.type];
       console.log(appliedFilters);
@@ -87,6 +87,79 @@ const reducer = (state = initialState, action) => {
         }
       }
       return copiedState;
+
+    case actionTypes.SORT_BY_EDUCATION:
+      const newState = { ...state };
+
+      // let val = action.payload.value;
+      // console.log(val);
+      // console.log(action);
+
+      let sortedEdu = state.allTemplates.filter((templates) => {
+        console.log(templates.category.includes("Education"));
+        return templates.category.includes("Education");
+      });
+      newState.filteredTemplates = sortedEdu;
+
+      newState.appliedFilters = addFilterIfNotExists(
+        actionTypes.SORT_BY_EDUCATION,
+        [action.payload],
+      );
+
+      newState.appliedFilters = removeFilter(actionTypes.SORT_BY_EDUCATION, [
+        action.payload,
+      ]);
+
+      return newState;
+
+    case actionTypes.SORT_BY_HEALTH:
+      const healthState = { ...state };
+
+      // let val = action.payload.value;
+      // console.log(val);
+      // console.log(action);
+
+      let sortedHealth = state.allTemplates.filter((templates) => {
+        console.log(templates.category.includes("Health"));
+        return templates.category.includes("Health");
+      });
+      healthState.filteredTemplates = sortedHealth;
+
+      healthState.appliedFilters = addFilterIfNotExists(
+        actionTypes.SORT_BY_HEALTH,
+        [action.payload],
+      );
+
+      healthState.appliedFilters = removeFilter(actionTypes.SORT_BY_HEALTH, [
+        action.payload,
+      ]);
+
+      return healthState;
+
+    case actionTypes.SORT_BY_ECOMMERCE:
+      const ecommerceState = { ...state };
+
+      // let val = action.payload.value;
+      // console.log(val);
+      // console.log(action);
+
+      let sortedEcommerce = state.allTemplates.filter((templates) => {
+        console.log(templates.category.includes("E-commerce"));
+        return templates.category.includes("E-commerce");
+      });
+      ecommerceState.filteredTemplates = sortedEcommerce;
+
+      ecommerceState.appliedFilters = addFilterIfNotExists(
+        actionTypes.SORT_BY_ECOMMERCE,
+        [action.payload],
+      );
+
+      ecommerceState.appliedFilters = removeFilter(
+        actionTypes.SORT_BY_ECOMMERCE,
+        [action.payload],
+      );
+
+      return ecommerceState;
 
     default:
       return state;

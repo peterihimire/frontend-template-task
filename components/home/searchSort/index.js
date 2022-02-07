@@ -18,12 +18,23 @@ const SearchSort = () => {
     dispatch(actions.filterByValue({ value: input }));
   };
 
-  const sortByAlphabethHandler = (e) => {
+  const sortByInputHandler = (e) => {
     e.preventDefault();
     const value = e.target.value;
+    let direction = value.endsWith("asc") ? "asc" : "desc";
     // let text = e.target.value;
     // dispatch(actions.searchCareersLocation({ ...field }));
     // dispatch(actions.filterByValue({value}));
+
+    if (value.startsWith("education")) {
+      dispatch(actions.sortByEducation({ value }));
+    } else if (value.startsWith("health")) {
+      dispatch(actions.sortByHealth({ value }));
+    } else if (value.startsWith("ecommerce")) {
+      dispatch(actions.sortByEcommerce({ value }));
+    } else {
+      dispatch(actions.loadData());
+    }
 
     console.log(value);
   };
@@ -57,7 +68,7 @@ const SearchSort = () => {
               id='category'
               defaultValue=''
               wrapClass={styles.selectWidth}
-              onChange={sortByAlphabethHandler}
+              onChange={sortByInputHandler}
             >
               <option value='all'>All</option>
               <option value='education'>Education</option>
@@ -73,10 +84,11 @@ const SearchSort = () => {
               id='order'
               defaultValue=''
               wrapClass={styles.selectWidth}
+              onChange={sortByInputHandler}
             >
               <option value='default'>Default</option>
-              <option value='ascending'>Ascending</option>
-              <option value='descending'>Descending</option>
+              <option value='order_asc'>Order - A-Z</option>
+              <option value='order_desc'>Order - Z-A</option>
             </Select>
           </span>
           <span>
@@ -87,6 +99,7 @@ const SearchSort = () => {
               id='date'
               defaultValue=''
               wrapClass={styles.selectWidth}
+              onChange={sortByInputHandler}
             >
               <option value='default'>Default</option>
               <option value='ascending'>Ascending</option>
