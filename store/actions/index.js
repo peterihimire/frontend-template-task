@@ -8,4 +8,5 @@ export {
   sortByEcommerce,
   sortByEducation,
   sortByHealth,
+  loadData
 } from "./templates";

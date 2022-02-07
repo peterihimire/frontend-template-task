@@ -14,16 +14,20 @@ const Templates = () => {
   const dispatch = useDispatch();
   // console.log(actions);
 
-  const { allTemplates, loading, error } = useSelector((state) => {
-    // console.log(state);
-    // console.log(error, loading);
-    return {
-      allTemplates: state.templates.filteredTemplates,
-      loading: state.templates.loading,
-      error: state.templates.error,
-    };
-  });
+  const { allTemplates, filteredTemplates, loading, error } = useSelector(
+    (state) => {
+      // console.log(state);
+      // console.log(error, loading);
+      return {
+        allTemplates: state.templates.allTemplates,
+        filteredTemplates: state.templates.filteredTemplates,
+        loading: state.templates.loading,
+        error: state.templates.error,
+      };
+    },
+  );
   console.log(allTemplates);
+  console.log(filteredTemplates);
 
   // const setAllTemplateLength = () => {
   //   if (!allTemplates) {
@@ -36,7 +40,7 @@ const Templates = () => {
 
   // Handles page count numbers
   const pageCount = Math.ceil(
-    allTemplates && allTemplates.length / templatesPerPage,
+    filteredTemplates && filteredTemplates.length / templatesPerPage,
   );
 
   //Handle page click
@@ -54,6 +58,10 @@ const Templates = () => {
     dispatch(actions.templates());
   }, []);
 
+  useEffect(() => {
+    dispatch(actions.loadData());
+  }, []);
+
   return (
     <section className={styles.searchSort}>
       <div className={`${styles.wrapper} wrapper`}>
@@ -67,7 +75,9 @@ const Templates = () => {
 
         <div className={styles.categoryInfo}>
           <h3>All Templates</h3>
-          <span>{allTemplates ? allTemplates.length : 0} templates</span>
+          <span>
+            {filteredTemplates ? filteredTemplates.length : 0} templates
+          </span>
         </div>
 
         {loading && (
@@ -75,14 +85,14 @@ const Templates = () => {
             <h3>Loading...</h3>
           </div>
         )}
-        {allTemplates ? (
-          allTemplates.length === 0 ? (
+        {filteredTemplates ? (
+          filteredTemplates.length === 0 ? (
             <div className={styles.noTemplate}>
               <h3>NO TEMPLATES AVAILABLE</h3>
             </div>
           ) : (
             <div className={styles.grid}>
-              {allTemplates
+              {filteredTemplates
                 .slice(pagesVisited, pagesVisited + templatesPerPage)
                 .map((templates) => {
                   // console.log(templates);
@@ -102,7 +112,7 @@ const Templates = () => {
           loading
         )}
 
-        {allTemplates ? (
+        {filteredTemplates ? (
           <div className={styles.gridPaginate}>
             <Pagination
               pageCount={pageCount}

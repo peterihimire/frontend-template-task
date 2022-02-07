@@ -6,6 +6,12 @@ import * as actionTypes from "../actions/actionTypes";
 //   }
 // };
 
+// const reloadPage = () => {
+//   if (typeof window !== "undefined") {
+//     window.location.reload(false);
+//   }
+// };
+
 const initialState = {
   // allTemplates: JSON.parse(localStorage.getItem("templates")) || [],
   // allTemplates: localStorageTemplate,
@@ -25,11 +31,21 @@ const reducer = (state = initialState, action) => {
         ...state,
         allTemplates: action.payload,
       };
+
+    case actionTypes.LOAD_DATA:
+      let allTemplates = state.allTemplates;
+
+      return {
+        ...state,
+        filteredTemplates: allTemplates,
+      };
+
     case actionTypes.TEMPLATE_START:
       return {
         ...state,
         loading: action.payload,
       };
+
     case actionTypes.TEMPLATE_ERROR:
       return {
         ...state,
@@ -50,7 +66,7 @@ const reducer = (state = initialState, action) => {
         return templates.name.toLowerCase().includes(value);
       });
       console.log(state.appliedFilters);
-      // let appliedFilters = state.appliedFilters;
+     
 
       let appliedFilters = [action.type];
       console.log(appliedFilters);
@@ -70,7 +86,6 @@ const reducer = (state = initialState, action) => {
           copiedState.filteredTemplates = copiedState.allTemplates;
         }
       }
-
       return copiedState;
 
     default:

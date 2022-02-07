@@ -23,6 +23,12 @@ export const getAllTemplates = (payload) => {
   };
 };
 
+export const loadData = () => {
+  return {
+    type: actionTypes.LOAD_DATA,
+  };
+};
+
 export const filterByValue = (payload) => {
   return {
     type: actionTypes.FILTER_BY_VALUE,

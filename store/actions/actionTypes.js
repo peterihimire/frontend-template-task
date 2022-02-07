@@ -1,4 +1,5 @@
 export const GET_ALL_TEMPLATES = "GET_ALL_TEMPLATES";
+export const LOAD_DATA = "LOAD_DATA";
 
 export const TEMPLATE_START = "TEMPLATE_START";
 export const TEMPLATE_ERROR = "TEMPLATE_ERROR";
