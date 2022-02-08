@@ -91,10 +91,6 @@ const reducer = (state = initialState, action) => {
     case actionTypes.SORT_BY_EDUCATION:
       const newState = { ...state };
 
-      // let val = action.payload.value;
-      // console.log(val);
-      // console.log(action);
-
       let sortedEdu = state.allTemplates.filter((templates) => {
         console.log(templates.category.includes("Education"));
         return templates.category.includes("Education");
@@ -114,10 +110,6 @@ const reducer = (state = initialState, action) => {
 
     case actionTypes.SORT_BY_HEALTH:
       const healthState = { ...state };
-
-      // let val = action.payload.value;
-      // console.log(val);
-      // console.log(action);
 
       let sortedHealth = state.allTemplates.filter((templates) => {
         console.log(templates.category.includes("Health"));
@@ -161,6 +153,27 @@ const reducer = (state = initialState, action) => {
 
       return ecommerceState;
 
+    case actionTypes.SORT_BY_ALPHABET:
+      const alphabetState = { ...state };
+
+      let sortedAlphabetArr =
+        action.payload.direction === "asc"
+          ? sortAsc(state.filteredTemplates, "name")
+          : sortDesc(state.filteredTemplates, "name");
+
+      alphabetState.filteredProducts = sortedAlphabetArr;
+      
+      alphabetState.appliedFilters = addFilterIfNotExists(
+        actionTypes.SORT_BY_ALPHABET,
+        [action.payload],
+      );
+      alphabetState.appliedFilters = removeFilter(
+        actionTypes.SORT_BY_ALPHABET,
+        [action.payload],
+      );
+
+      return alphabetState;
+
     default:
       return state;
   }
@@ -183,4 +196,24 @@ function removeFilter(filter, appliedFilters) {
   console.log(index);
   appliedFilters.splice(index, 1);
   return appliedFilters;
+}
+
+function sortAsc(arr, field) {
+  return arr.sort(function (a, b) {
+    if (a[field] > b[field]) return 1;
+
+    if (b[field] > a[field]) return -1;
+
+    return 0;
+  });
+}
+
+function sortDesc(arr, field) {
+  return arr.sort(function (a, b) {
+    if (a[field] > b[field]) return -1;
+
+    if (b[field] > a[field]) return 1;
+
+    return 0;
+  });
 }

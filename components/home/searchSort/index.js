@@ -39,6 +39,20 @@ const SearchSort = () => {
     console.log(value);
   };
 
+  const sortByInput = (e) => {
+    e.preventDefault();
+    const value = e.target.value;
+    let direction = value.endsWith("asc") ? "asc" : "desc";
+
+    if (value === "default") {
+      dispatch(actions.loadData());
+    } else {
+      dispatch(actions.sortByAlphabet({ direction }));
+    }
+
+    console.log(value);
+  };
+
   return (
     <section className={styles.searchSort}>
       <div className={`${styles.wrapper} wrapper`}>
@@ -84,7 +98,7 @@ const SearchSort = () => {
               id='order'
               defaultValue=''
               wrapClass={styles.selectWidth}
-              onChange={sortByInputHandler}
+              onChange={sortByInput}
             >
               <option value='default'>Default</option>
               <option value='order_asc'>Order - A-Z</option>
@@ -102,8 +116,8 @@ const SearchSort = () => {
               onChange={sortByInputHandler}
             >
               <option value='default'>Default</option>
-              <option value='ascending'>Ascending</option>
-              <option value='descending'>Descending</option>
+              <option value='order_asc'>Ascending</option>
+              <option value='order_desc'>Descending</option>
             </Select>
           </span>
         </div>
