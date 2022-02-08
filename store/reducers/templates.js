@@ -154,7 +154,7 @@ const reducer = (state = initialState, action) => {
       return ecommerceState;
 
     case actionTypes.SORT_BY_ALPHABET:
-      const alphabetState = { ...state };
+      const alphabetState = Object.assign({}, state);
 
       let sortedAlphabetArr =
         action.payload.direction === "asc"
@@ -162,7 +162,7 @@ const reducer = (state = initialState, action) => {
           : sortDesc(state.filteredTemplates, "name");
 
       alphabetState.filteredProducts = sortedAlphabetArr;
-      
+
       alphabetState.appliedFilters = addFilterIfNotExists(
         actionTypes.SORT_BY_ALPHABET,
         [action.payload],

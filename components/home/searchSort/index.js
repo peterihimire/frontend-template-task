@@ -116,8 +116,8 @@ const SearchSort = () => {
               onChange={sortByInputHandler}
             >
               <option value='default'>Default</option>
-              <option value='order_asc'>Ascending</option>
-              <option value='order_desc'>Descending</option>
+              <option value='order_asc'>Date - 1-30</option>
+              <option value='order_desc'>Date - 30-1</option>
             </Select>
           </span>
         </div>
