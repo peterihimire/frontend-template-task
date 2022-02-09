@@ -174,6 +174,27 @@ const reducer = (state = initialState, action) => {
 
       return alphabetState;
 
+      case actionTypes.SORT_BY_DATE:
+      const dateState = Object.assign({}, state);
+
+      let sortedDateArr =
+        action.payload.direction === "asc"
+          ? sortAsc(state.filteredTemplates, "created")
+          : sortDesc(state.filteredTemplates, "created");
+
+      dateState.filteredProducts = sortedDateArr;
+
+      dateState.appliedFilters = addFilterIfNotExists(
+        actionTypes.SORT_BY_DATE,
+        [action.payload],
+      );
+      dateState.appliedFilters = removeFilter(
+        actionTypes.SORT_BY_DATE,
+        [action.payload],
+      );
+
+      return dateState;
+
     default:
       return state;
   }

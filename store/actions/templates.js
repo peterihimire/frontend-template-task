@@ -43,6 +43,13 @@ export const sortByAlphabet = (payload) => {
   };
 };
 
+export const sortByDate = (payload) => {
+  return {
+    type: actionTypes.SORT_BY_DATE,
+    payload,
+  };
+};
+
 export const sortByHealth = (payload) => {
   return {
     type: actionTypes.SORT_BY_HEALTH,

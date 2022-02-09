@@ -113,11 +113,11 @@ const SearchSort = () => {
               id='date'
               defaultValue=''
               wrapClass={styles.selectWidth}
-              onChange={sortByInputHandler}
+              onChange={sortByInput}
             >
               <option value='default'>Default</option>
-              <option value='order_asc'>Date - 1-30</option>
-              <option value='order_desc'>Date - 30-1</option>
+              <option value='date_asc'>Date - 1-30</option>
+              <option value='date_desc'>Date - 30-1</option>
             </Select>
           </span>
         </div>
