@@ -13,7 +13,6 @@ const SearchSort = () => {
   const filterByInput = (e) => {
     e.preventDefault();
     const input = e.target.value;
-    // let text = e.target.value;
     console.log(input);
     dispatch(actions.filterByValue({ value: input }));
   };
@@ -21,7 +20,6 @@ const SearchSort = () => {
   const sortByInputHandler = (e) => {
     e.preventDefault();
     const value = e.target.value;
-    let direction = value.endsWith("asc") ? "asc" : "desc";
     // let text = e.target.value;
     // dispatch(actions.searchCareersLocation({ ...field }));
     // dispatch(actions.filterByValue({value}));
@@ -46,6 +44,12 @@ const SearchSort = () => {
 
     if (value === "default") {
       dispatch(actions.loadData());
+    } else if (value.startsWith("education")) {
+      dispatch(actions.sortByEducation({ value }));
+    } else if (value.startsWith("health")) {
+      dispatch(actions.sortByHealth({ value }));
+    } else if (value.startsWith("ecommerce")) {
+      dispatch(actions.sortByEcommerce({ value }));
     } else {
       dispatch(actions.sortByAlphabet({ direction }));
     }
@@ -82,9 +86,10 @@ const SearchSort = () => {
               id='category'
               defaultValue=''
               wrapClass={styles.selectWidth}
-              onChange={sortByInputHandler}
+              // onChange={sortByInputHandler}
+              onChange={sortByInput}
             >
-              <option value='all'>All</option>
+              <option value='default'>All</option>
               <option value='education'>Education</option>
               <option value='ecommerce'>E-Commerce</option>
               <option value='health'>Health</option>
