@@ -89,24 +89,24 @@ const reducer = (state = initialState, action) => {
       return copiedState;
 
     case actionTypes.SORT_BY_EDUCATION:
-      const newState = { ...state };
+      const eduState = { ...state };
 
       let sortedEdu = state.allTemplates.filter((templates) => {
         console.log(templates.category.includes("Education"));
         return templates.category.includes("Education");
       });
-      newState.filteredTemplates = sortedEdu;
+      eduState.filteredTemplates = sortedEdu;
 
-      newState.appliedFilters = addFilterIfNotExists(
+      eduState.appliedFilters = addFilterIfNotExists(
         actionTypes.SORT_BY_EDUCATION,
         [action.payload],
       );
 
-      newState.appliedFilters = removeFilter(actionTypes.SORT_BY_EDUCATION, [
+      eduState.appliedFilters = removeFilter(actionTypes.SORT_BY_EDUCATION, [
         action.payload,
       ]);
 
-      return newState;
+      return eduState;
 
     case actionTypes.SORT_BY_HEALTH:
       const healthState = { ...state };
