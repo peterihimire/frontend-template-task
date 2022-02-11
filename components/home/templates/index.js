@@ -11,6 +11,18 @@ const Templates = () => {
   const templatesPerPage = 15;
   const pagesVisited = pageNum * templatesPerPage;
 
+  const nextPage = () => {
+    dispatch(actions.loadNewPage({ page: 1 }));
+  };
+
+  const previousPage = () => {
+    dispatch(actions.loadNewPage({ page: -1 }));
+  };
+
+  const goToPage = (page) => {
+    dispatch(actions.loadExactPage({ page }));
+  };
+
   const dispatch = useDispatch();
   // console.log(actions);
 
@@ -130,6 +142,38 @@ const Templates = () => {
         ) : (
           loading
         )}
+        <section className={styles.customPagination}>
+          <button
+            className='button pagination-previous'
+            onClick={() => {
+              previousPage();
+            }}
+          >
+            Previous
+          </button>
+          <button
+            className='button pagination-next'
+            onClick={() => {
+              nextPage();
+            }}
+          >
+            Next page
+          </button>
+          <ul className='pagination-list'>
+            {[...Array(filteredTemplates)].map((value, index) => (
+              <button
+                className={`button pagination-link ${
+                  currentPage === index + 1 ? "is-current" : ""
+                }`}
+                aria-label='Page 1'
+                onClick={() => this.goToPage(index + 1)}
+                aria-current='page'
+              >
+                {index + 1}
+              </button>
+            ))}
+          </ul>
+        </section>
       </div>
     </section>
   );
