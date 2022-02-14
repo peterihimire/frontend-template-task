@@ -19,6 +19,12 @@ const initialState = {
   allTemplates: [],
   appliedFilters: [],
   filteredTemplates: [],
+  countPerTemplatePage: 12,
+  currentTemplatePage: 1,
+  filteredTemplateCount: 4,
+  filteredTemplatesPages: 1,
+  totalTemplateCount: 0,
+  totalTemplatePages: 0,
   loading: false,
   error: null,
 };

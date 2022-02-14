@@ -26,18 +26,33 @@ const Templates = () => {
   const dispatch = useDispatch();
   // console.log(actions);
 
-  const { allTemplates, filteredTemplates, loading, error } = useSelector(
-    (state) => {
-      // console.log(state);
-      // console.log(error, loading);
-      return {
-        allTemplates: state.templates.allTemplates,
-        filteredTemplates: state.templates.filteredTemplates,
-        loading: state.templates.loading,
-        error: state.templates.error,
-      };
-    },
-  );
+  const {
+    allTemplates,
+    filteredTemplates,
+    loading,
+    error,
+    currentTemplatePage,
+    countPerTemplatePage,
+    filteredTemplatePage,
+    filteredTemplateCount,
+    totalTemplateCount,
+    totalTemplatePages,
+  } = useSelector((state) => {
+    // console.log(state);
+    // console.log(error, loading);
+    return {
+      allTemplates: state.templates.allTemplates,
+      filteredTemplates: state.templates.filteredTemplates,
+      loading: state.templates.loading,
+      error: state.templates.error,
+      currentTemplatePage: state.templates.currentTemplatePage,
+      countPerTemplatePage: state.templates.countPerTemplatePage,
+      filteredTemplatePage: state.templates.filteredTemplatePage,
+      filteredTemplateCount: state.templates.filteredTemplateCount,
+      totalTemplateCount: state.templates.totalTemplateCount,
+      totalTemplatePages: state.templates.totalTemplatePages,
+    };
+  });
   console.log(allTemplates);
   console.log(filteredTemplates);
 
