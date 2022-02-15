@@ -53,8 +53,16 @@ const Templates = () => {
       totalTemplatePages: state.templates.totalTemplatePages,
     };
   });
+  console.log(error);
   console.log(allTemplates);
   console.log(filteredTemplates);
+  console.log(filteredTemplatePage);
+  console.log(filteredTemplateCount);
+  console.log(totalTemplateCount);
+  console.log(totalTemplatePages);
+  console.log(currentTemplatePage);
+  console.log(countPerTemplatePage);
+
 
   // const setAllTemplateLength = () => {
   //   if (!allTemplates) {
@@ -178,10 +186,10 @@ const Templates = () => {
             {[...Array(filteredTemplates)].map((value, index) => (
               <button
                 className={`button pagination-link ${
-                  currentPage === index + 1 ? "is-current" : ""
+                  currentTemplatePage === index + 1 ? "is-current" : ""
                 }`}
                 aria-label='Page 1'
-                onClick={() => this.goToPage(index + 1)}
+                onClick={() => goToPage(index + 1)}
                 aria-current='page'
               >
                 {index + 1}
