@@ -71,6 +71,16 @@ export const sortByEcommerce = (payload) => {
   };
 };
 
+export const loadNewPage = (payload) => ({
+  type: actionTypes.LOAD_NEW_PAGE,
+  payload,
+});
+
+export const loadExactPage = (payload) => ({
+  type: actionTypes.LOAD_EXACT_PAGE,
+  payload,
+});
+
 // Get all templates
 
 export const templates = () => {

@@ -9,5 +9,7 @@ export {
   sortByEducation,
   sortByHealth,
   sortByDate,
-  loadData
+  loadData,
+  loadNewPage,
+  loadExactPage,
 } from "./templates";
