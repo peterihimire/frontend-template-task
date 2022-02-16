@@ -20,6 +20,7 @@ const initialState = {
   appliedFilters: [],
   filteredTemplates: [],
   countPerTemplatePage: 12,
+  currentTemplateCount: 12,
   currentTemplatePage: 1,
   filteredTemplateCount: 4,
   filteredTemplatesPages: 1,
@@ -202,11 +203,27 @@ const reducer = (state = initialState, action) => {
 
     case actionTypes.LOAD_NEW_PAGE:
       let loadNewPageState = Object.assign({}, state);
-      // let addPages = action.payload.p
-      return {
-        ...state,
-        error: action.payload,
-      };
+      let addPages = action.payload.page;
+      console.log(addPages);
+      console.log(action.payload.page);
+
+      loadNewPageState.currentTemplatePage += addPages;
+      let perPage = loadNewPageState.countPerTemplatePage;
+
+      let nextTemplates;
+      if (addPages === 1) {
+        let upperCount = loadNewPageState.currentTemplateCount;
+        let lowerCount = loadNewPageState.currentTemplateCount - perPage;
+
+        loadNewPageState.currentTemplateCount +=
+          loadNewPageState.countPerTemplatePage;
+
+        nextTemplates = loadNewPageState.templates.slice(
+          lowerCount,
+          upperCount,
+        );
+      }
+      return loadNewPageState;
 
     default:
       return state;
