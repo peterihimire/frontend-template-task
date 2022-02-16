@@ -180,7 +180,7 @@ const reducer = (state = initialState, action) => {
 
       return alphabetState;
 
-      case actionTypes.SORT_BY_DATE:
+    case actionTypes.SORT_BY_DATE:
       const dateState = Object.assign({}, state);
 
       let sortedDateArr =
@@ -194,12 +194,19 @@ const reducer = (state = initialState, action) => {
         actionTypes.SORT_BY_DATE,
         [action.payload],
       );
-      dateState.appliedFilters = removeFilter(
-        actionTypes.SORT_BY_DATE,
-        [action.payload],
-      );
+      dateState.appliedFilters = removeFilter(actionTypes.SORT_BY_DATE, [
+        action.payload,
+      ]);
 
       return dateState;
+
+    case actionTypes.LOAD_NEW_PAGE:
+      let loadNewPageState = Object.assign({}, state);
+      // let addPages = action.payload.p
+      return {
+        ...state,
+        error: action.payload,
+      };
 
     default:
       return state;
