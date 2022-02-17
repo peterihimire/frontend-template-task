@@ -218,7 +218,7 @@ const reducer = (state = initialState, action) => {
         loadNewPageState.currentTemplateCount +=
           loadNewPageState.countPerTemplatePage;
 
-        nextTemplates = loadNewPageState.templates.slice(
+        nextTemplates = loadNewPageState.allTemplates.slice(
           lowerCount,
           upperCount,
         );
