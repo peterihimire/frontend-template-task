@@ -223,6 +223,25 @@ const reducer = (state = initialState, action) => {
           upperCount,
         );
       }
+
+      if (addPages === -1) {
+        let upperCount = loadNewPageState.currentTemplateCount;
+        let lowerCount = loadNewPageState.currentTemplateCount - perPage;
+
+        loadNewPageState.currentTemplateCount -=
+          loadNewPageState.countPerTemplatePage;
+
+        nextTemplates = loadNewPageState.allTemplates.slice(
+          lowerCount - perPage,
+          upperCount - perPage,
+        );
+      }
+      loadNewPageState.filteredTemplates = nextTemplates;
+      window.history.pushState(
+        { page: 1 },
+        "title 1",
+        `?page=${loadNewPageState.currentTemplatePage}`,
+      );
       return loadNewPageState;
 
     default:
