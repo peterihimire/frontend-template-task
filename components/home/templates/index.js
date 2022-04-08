@@ -165,7 +165,7 @@ const Templates = () => {
         ) : (
           loading
         )}
-        <section className={styles.customPagination}>
+        {/* <section className={styles.customPagination}>
           <button
             className='button pagination-previous'
             onClick={() => {
@@ -196,7 +196,7 @@ const Templates = () => {
               </button>
             ))}
           </ul>
-        </section>
+        </section> */}
       </div>
     </section>
   );
